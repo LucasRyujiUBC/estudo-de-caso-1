@@ -1,10 +1,10 @@
 import os  # Biblioteca para manipulação de arquivos e diretórios
-import pandas as pd  # Biblioteca para manipulação de dados
-from sklearn.ensemble import RandomForestClassifier  # Algoritmo de aprendizado de máquina para classificação
-from sklearn.model_selection import train_test_split  # Divisão dos dados para treinamento e teste
-from sklearn.preprocessing import LabelEncoder  # Transformação de dados categóricos em numéricos
-import matplotlib.pyplot as plt  # Biblioteca para criação de gráficos
-import seaborn as sns  # Biblioteca para gráficos estatísticos
+import pandas as pd  # type: ignore # Biblioteca para manipulação de dados
+from sklearn.ensemble import RandomForestClassifier  # type: ignore # Algoritmo de aprendizado de máquina para classificação
+from sklearn.model_selection import train_test_split  # type: ignore # Divisão dos dados para treinamento e teste
+from sklearn.preprocessing import LabelEncoder  # type: ignore # Transformação de dados categóricos em numéricos
+import matplotlib.pyplot as plt  # type: ignore # Biblioteca para criação de gráficos
+import seaborn as sns  # type: ignore # Biblioteca para gráficos estatísticos
 
 # Função para carregar logs a partir de um arquivo de texto
 def carregar_logs(caminho):
@@ -55,9 +55,18 @@ def classificar_eventos(df):
     df["Classificacao"] = df["Anomalia"].apply(lambda x: "Normal" if x == 0 else "Suspeito" if x == 1 else "Crítico")  # Definição de categorias
     return df  # Retorna o DataFrame classificado
 
+# Função para gerar alertas de eventos críticos
+def gerar_alertas(df):
+    eventos_criticos = df[df["Classificacao"] == "Crítico"]
+    if not eventos_criticos.empty:
+        print("🚨 ALERTA: Eventos Críticos Detectados!")
+        print(eventos_criticos[["Timestamp", "Mensagem"]])
+    else:
+        print("Nenhum evento crítico detectado.")
+
 # Função para gerar um relatório atualizado com os eventos processados
 def gerar_relatorio(df):
-    caminho_relatorio = r"C:\Users\LUCASRYUJIFUJIMOTO\Desktop\estudo_de_caso_1\log\relatorio\relatorio.txt"  # Caminho de saída do relatório
+    caminho_relatorio = r"relatorio\relatorio.txt"  # Caminho de saída do relatório
     
     try:
         os.makedirs(os.path.dirname(caminho_relatorio), exist_ok=True)  # Garante que o diretório existe
@@ -97,14 +106,14 @@ def gerar_relatorio(df):
 # Função para visualizar os dados com gráficos
 def visualizar_dados(df):
     plt.figure(figsize=(10, 6))
-    sns.countplot(data=df, x="Classificacao", palette="viridis", dodge=False)  # Gráfico de contagem
+    sns.countplot(data=df, x="Classificacao", hue="Classificacao", palette="viridis", dodge=False, legend=False)  # Gráfico de contagem
     plt.title("Classificação de Eventos nos Logs")
     plt.xlabel("Classificação")
     plt.ylabel("Quantidade")
     plt.show()  # Exibe gráfico
 
 # Caminho do log
-caminho_logs = r"C:\Users\LUCASRYUJIFUJIMOTO\Desktop\estudo_de_caso_1\log\log.txt"
+caminho_logs = r"log\log.txt"
 
 # Fluxo do programa: processamento completo dos logs
 if os.path.exists(caminho_logs):
