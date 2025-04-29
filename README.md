@@ -1,51 +1,71 @@
-# Interpretador de Expressões Aritméticas com IA
+# Análise de Logs com IA
 
 ## Descrição
 
-Este projeto utiliza um modelo de linguagem baseado em inteligência artificial para interpretar e avaliar expressões aritméticas. Ele emprega o modelo microsoft/phi-2 da biblioteca transformers para processar e calcular expressões matemáticas, mesmo quando escritas de forma não convencional.
+Este projeto visa automatizar a análise de logs de sistemas para detectar e classificar eventos, como erros, avisos e falhas críticas, utilizando técnicas de aprendizado de máquina. O objetivo é identificar padrões e anomalias nos logs, gerar alertas automáticos e produzir relatórios detalhados para análise posterior.
 
-A interface gráfica é construída com Gradio, permitindo que os usuários interajam facilmente com o interpretador de expressões.
+## Instruções de Instalação / Configuração
 
-## Instalação e Configuração
+### 1. Crie um ambiente virtual (opcional, mas recomendado)
 
-### 1. Instalar Dependências
+Recomenda-se criar um ambiente virtual para manter as dependências do projeto isoladas. Para isso, execute o seguinte comando:
 
-Certifique-se de ter o Python instalado e, em seguida, instale as bibliotecas necessárias executando:
+python -m venv venv
 
-pip install gradio transformers torch
+### 2. Ative o ambiente virtual
 
-### 2. Executar o Projeto
+- No Windows:
 
-Para iniciar o interpretador, basta rodar o seguinte comando:
+  venv\Scripts\activate
+
+- No Linux/macOS:
+
+  source venv/bin/activate
+
+### 3. Instale as dependências
+
+Após ativar o ambiente virtual, instale todas as dependências do projeto executando o seguinte comando:
+
+pip install -r requirements.txt
+
+Isso instalará as bibliotecas necessárias, incluindo:
+
+- pandas: Para manipulação de dados.
+- scikit-learn: Para a criação do modelo de aprendizado de máquina (RandomForestClassifier).
+- matplotlib: Para geração de gráficos.
+- seaborn: Para visualizações mais avançadas.
+
+### 4. Configuração do Caminho de Logs
+
+No script Python, o caminho do arquivo de log deve ser configurado para o local correto onde seus logs estão armazenados. Verifique o seguinte no código:
+
+caminho_logs = r"C:\caminho\para\seu\log.txt"
+
+Substitua o caminho pelo local onde os logs estão salvos em sua máquina.
+
+### 5. Executando o Projeto
+
+Após configurar o caminho do arquivo de log, execute o script principal para iniciar a análise:
 
 python programa.py
 
-Isso inicializará a interface gráfica onde você poderá inserir expressões aritméticas para avaliação.
+### 6. Resultados
 
-## Como Funciona
-
-O usuário insere uma expressão matemática (exemplo: 2 + (3 * 4) / 2).
-
-O modelo microsoft/phi-2 processa e interpreta a expressão.
-
-O resultado é exibido na interface de Gradio.
-
-A inteligência artificial está configurada para minimizar erros e interpretar expressões que podem estar ligeiramente incorretas ou mal formatadas.
+- O relatório gerado será salvo no diretório especificado no código, com o nome relatorio.txt.
+- Gráficos gerados serão exibidos em uma janela interativa.
 
 ## Dependências
 
-As principais dependências utilizadas no projeto são:
+As dependências para rodar o projeto estão listadas no arquivo requirements.txt. Caso queira instalar manualmente as bibliotecas, pode usar o seguinte comando:
 
-- gradio: Para construção da interface gráfica.
-- transformers: Para uso do modelo de linguagem microsoft/phi-2.
-- torch: Para suporte à execução do modelo.
+pip install pandas scikit-learn matplotlib seaborn
 
 ## Autores
 
-- Lucas Ryuji Fujimoto
-- Britney Brevio dos Santos Lima
-- Thiago Viniciys Araújo
+Lucas Ryuji Fujimoto
+Britney Brevio dos Santos Lima
+Thiago Vinicius Araújo
 
-## Considerações Finais
+## Considerações finais
 
-Este projeto demonstra o poder dos modelos de linguagem na interpretação de cálculos matemáticos. A interface intuitiva e acessível permite que usuários experimentem a IA para resolver expressões aritméticas de maneira eficiente.
+Este projeto foi desenvolvido com o objetivo de fornecer uma solução automatizada para análise de logs e detecção de eventos anômalos, melhorando a eficiência no monitoramento de sistemas.
