@@ -34,13 +34,11 @@ A inteligência artificial está configurada para minimizar erros e interpretar 
 
 ## Dependências
 
-### As principais dependências utilizadas no projeto são:
+As principais dependências utilizadas no projeto são:
 
-#### gradio: Para construção da interface gráfica.
-
-#### transformers: Para uso do modelo de linguagem microsoft/phi-2.
-
-#### torch: Para suporte à execução do modelo.
+- gradio: Para construção da interface gráfica.
+- transformers: Para uso do modelo de linguagem microsoft/phi-2.
+- torch: Para suporte à execução do modelo.
 
 ## Autores
 
